@@ -32,3 +32,7 @@ class Meteor(Sprite):
         """
         self.screen.blit(self.image, self.rect)
 
+    def update(self):
+        """Move meteors para direita"""
+        self.x += self.ai_settings.meteor_speed_factor
+        self.rect.x = self.x
