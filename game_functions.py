@@ -134,6 +134,24 @@ def get_number_rows(ai_settings, ship_height, meteor_height):
     number_rows = int(available_space_y / (2* meteor_height))
     return number_rows
 
-def update_meteors(meteors):
+
+def update_meteors(ai_settings, meteors):
     """Atualiza a posição dos meteors"""
+    check_fleet_edges(ai_settings, meteors)
     meteors.update()
+
+
+def check_fleet_edges(ai_settings, meteors):
+    """responde quando atinge a borda"""
+    for meteor in meteors.sprites():
+        if meteor.check_edges():
+            change_fleet_direction(ai_settings, meteors)
+            break
+
+
+def change_fleet_direction(ai_settings, meteors):
+    """Faz a frota descer e mudar a direção"""
+    for meteor in meteors.sprites():
+        meteor.rect.y += ai_settings.fleet_drop_speed
+    ai_settings.fleet_direction *= -1
+

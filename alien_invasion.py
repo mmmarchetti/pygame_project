@@ -31,7 +31,7 @@ def run_game():
         ship.update()
         gf.update_bullets(bullets)
         # print(len(bullets))
-        gf.update_meteors(meteors)
+        gf.update_meteors(ai_settings, meteors)
         gf.update_screen(ai_settings, screen, ship, meteors, bullets)
 
 

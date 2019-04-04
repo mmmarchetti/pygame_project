@@ -26,3 +26,6 @@ class Settings():
 
         # Configuração dos aliens
         self.meteor_speed_factor = 1
+        self.fleet_drop_speed = 10
+        # fleet igual a 1 represneta direita. -1 esquerda
+        self.fleet_direction = 1
