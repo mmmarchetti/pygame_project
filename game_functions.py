@@ -136,6 +136,7 @@ def check_bullet_meteor_collision(ai_settings, screen, ship, meteors, bullets):
 
         # Destrói os projéteis e cria nova frota
         bullets.empty()
+        ai_settings.increase_speed()
         create_fleet(ai_settings, screen, ship, meteors)
 
 
