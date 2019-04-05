@@ -59,4 +59,5 @@ class Ship():
 
     def center_ship(self):
         """Centraliza a espaçonave na tela"""
-        self.center = self.screen_rect.centerx
+        self.center_x = self.screen_rect.centerx
+        self.center_y = (self.screen_rect.bottom - 50)
