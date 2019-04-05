@@ -75,6 +75,9 @@ def check_play_button(ai_settings, screen, stats, play_button, ship, meteors, bu
 
     if button_clicked and not stats.game_active:
 
+        # Oculta o mouse
+        pygame.mouse.set_visible(False)
+
         # Reinicia os dados
         stats.reset_stats()
         stats.game_active = True
@@ -197,6 +200,7 @@ def ship_hit(ai_settings, stats, screen, ship, meteors, bullets):
         sleep(0.5)
     else:
         stats.game_active = False
+        pygame.mouse.set_visible(True)
 
 
 def update_meteors(ai_settings, stats, screen, ship, meteors, bullets):
