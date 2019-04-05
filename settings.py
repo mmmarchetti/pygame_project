@@ -39,6 +39,9 @@ class Settings():
         self.meteor_speed_factor = 1
         self.fleet_direction = 1
 
+        # Pontuação
+        self.meteor_points = 50
+
     def increase_speed(self):
         """Aumenta a velocidade"""
         self.ship_speed_factor *= self.speedup_scale

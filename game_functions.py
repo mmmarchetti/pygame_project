@@ -117,7 +117,7 @@ def update_screen(ai_settings, screen, stats, sb, ship, meteors, bullets, play_b
     pygame.display.flip()
 
 
-def update_bullets(ai_settings, screen, ship, meteors, bullets):
+def update_bullets(ai_settings, screen, stats, sb, ship, meteors, bullets):
     """
     Atualiza a posição dos projéteis e se livra dos antigos
     """
@@ -126,14 +126,17 @@ def update_bullets(ai_settings, screen, ship, meteors, bullets):
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
 
-    check_bullet_meteor_collision(ai_settings, screen, ship, meteors, bullets)
+    check_bullet_meteor_collision(ai_settings, screen, stats, sb, ship, meteors, bullets)
 
 
-def check_bullet_meteor_collision(ai_settings, screen, ship, meteors, bullets):
+def check_bullet_meteor_collision(ai_settings, screen, stats, sb, ship, meteors, bullets):
     """Responde a colisões entre projéteis e meteors"""
 
     # Verifica se algum projétil atingiu meteor
     collisions = pygame.sprite.groupcollide(bullets, meteors, True, True)
+    if collisions:
+        stats.score += ai_settings.meteor_points
+        sb.prep_score()
 
     if len(meteors) == 0:
 
