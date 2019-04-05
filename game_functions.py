@@ -92,8 +92,15 @@ def update_bullets(ai_settings, screen, ship, meteors, bullets):
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
 
+    check_bullet_meteor_collision(ai_settings, screen, ship, meteors, bullets)
+
+
+def check_bullet_meteor_collision(ai_settings, screen, ship, meteors, bullets):
+    """Responde a colisões entre projéteis e meteors"""
+
     # Verifica se algum projétil atingiu meteor
     collisions = pygame.sprite.groupcollide(bullets, meteors, True, True)
+
     if len(meteors) == 0:
 
         # Destrói os projéteis e cria nova frota
