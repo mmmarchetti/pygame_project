@@ -83,7 +83,7 @@ def update_screen(ai_settings, screen, ship, meteors, bullets):
     pygame.display.flip()
 
 
-def update_bullets(meteors, bullets):
+def update_bullets(ai_settings, screen, ship, meteors, bullets):
     """
     Atualiza a posição dos projéteis e se livra dos antigos
     """
@@ -94,6 +94,11 @@ def update_bullets(meteors, bullets):
 
     # Verifica se algum projétil atingiu meteor
     collisions = pygame.sprite.groupcollide(bullets, meteors, True, True)
+    if len(meteors) == 0:
+
+        # Destrói os projéteis e cria nova frota
+        bullets.empty()
+        create_fleet(ai_settings, screen, ship, meteors)
 
 
 def get_number_meteors_x(ai_settings, meteor_width):
