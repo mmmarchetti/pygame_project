@@ -135,8 +135,9 @@ def check_bullet_meteor_collision(ai_settings, screen, stats, sb, ship, meteors,
     # Verifica se algum projétil atingiu meteor
     collisions = pygame.sprite.groupcollide(bullets, meteors, True, True)
     if collisions:
-        stats.score += ai_settings.meteor_points
-        sb.prep_score()
+        for meteors in collisions.values():
+            stats.score += ai_settings.meteor_points * len(meteors)
+            sb.prep_score()
 
     if len(meteors) == 0:
 
