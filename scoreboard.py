@@ -4,7 +4,7 @@ import pygame.font
 class Scoreboard():
     """Uma classe para mostrar as potnuações"""
 
-    def __init(self, ai_settings, screen, stats):
+    def __init__(self, ai_settings, screen, stats):
         """Inicializa os atributos da pontuação"""
         self.screen = screen
         self.screen_rect = screen.get_rect()

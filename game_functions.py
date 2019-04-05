@@ -91,7 +91,7 @@ def check_play_button(ai_settings, screen, stats, play_button, ship, meteors, bu
         ship.center_ship()
 
 
-def update_screen(ai_settings, screen, stats, ship, meteors, bullets, play_button):
+def update_screen(ai_settings, screen, stats, sb, ship, meteors, bullets, play_button):
     """
     Atualiza a imagem da tela
     """
@@ -105,6 +105,9 @@ def update_screen(ai_settings, screen, stats, ship, meteors, bullets, play_butto
 
     ship.blitme()
     meteors.draw(screen)
+
+    # Desenha a informação sobre pontuação
+    sb.show_score()
 
     # Desenha o Botão Jogar se o jogo estiver parado
     if not stats.game_active:
