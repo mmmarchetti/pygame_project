@@ -16,6 +16,7 @@ class Settings():
 
         # Configuração da espaçonave
         self.ship_speed_factor = 1
+        self.ship_limit = 3
 
         # Configuração dos projéteis
         self.bullet_speed_factor = 1
@@ -24,7 +25,7 @@ class Settings():
         self.bullet_color = 60, 60, 60
         self.bullets_allowed = 5
 
-        # Configuração dos aliens
+        # Configuração de meteors
         self.meteor_speed_factor = 0.5
         self.fleet_drop_speed = 10
         # fleet igual a 1 represneta direita. -1 esquerda

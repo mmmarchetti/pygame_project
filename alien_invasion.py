@@ -1,6 +1,7 @@
 import pygame
 from pygame.sprite import Group
 from settings import Settings
+from game_stats import GameStats
 from ship import Ship
 import game_functions as gf
 
@@ -13,6 +14,9 @@ def run_game():
     ai_settings = Settings()
     screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
     pygame.display.set_caption("Invasão Alien")
+
+    # Cria uma estância que armazena dados estatísticos do jogo
+    stats = GameStats(ai_settings)
 
     # Cria uma espaçonave
     ship = Ship(ai_settings, screen)
@@ -31,7 +35,7 @@ def run_game():
         ship.update()
         gf.update_bullets(ai_settings, screen, ship, meteors, bullets)
         # print(len(bullets))
-        gf.update_meteors(ai_settings, meteors)
+        gf.update_meteors(ai_settings, stats, screen, ship, meteors, bullets)
         gf.update_screen(ai_settings, screen, ship, meteors, bullets)
 
 

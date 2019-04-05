@@ -57,4 +57,6 @@ class Ship():
         """
         self.screen.blit(self.image, self.rect)
 
-
+    def center_ship(self):
+        """Centraliza a espaçonave na tela"""
+        self.center = self.screen_rect.centerx

@@ -1,5 +1,6 @@
 import pygame
 import sys
+from time import sleep
 from bullet import Bullet
 from meteor import Meteor
 
@@ -146,14 +147,37 @@ def create_fleet(ai_settings, screen, ship, meteors):
 def get_number_rows(ai_settings, ship_height, meteor_height):
     """Determina o número de linhas de meteoros"""
     available_space_y = (ai_settings.screen_height - (3*meteor_height) - ship_height)
-    number_rows = int(available_space_y / (2* meteor_height))
+    number_rows = int(available_space_y / (2 * meteor_height))
     return number_rows
 
 
-def update_meteors(ai_settings, meteors):
+def ship_hit(ai_settings, stats, screen, ship, meteors, bullets):
+    """Responde ao fato de a espaçonave ter sido atingida por meteor"""
+
+    # decrementa ships_left
+    stats.ships_left -= 1
+
+    # esvazia a lista de meteors e projéteis
+    meteors.empty()
+    bullets.empty()
+
+    # Cria uma nova frota e centraliza a nave
+    create_fleet(ai_settings, screen, ship, meteors)
+    ship.center_ship()
+
+    # Faz uma pausa
+    sleep(0.5)
+
+
+def update_meteors(ai_settings, stats, screen, ship, meteors, bullets):
     """Atualiza a posição dos meteors"""
     check_fleet_edges(ai_settings, meteors)
     meteors.update()
+
+    # Verifica se houve colisão entre meteor e ship
+    if pygame.sprite.spritecollideany(ship, meteors):
+        print('Nave atingida')
+        ship_hit(ai_settings, stats, screen, ship, meteors, bullets)
 
 
 def check_fleet_edges(ai_settings, meteors):
