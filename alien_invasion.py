@@ -22,14 +22,14 @@ def run_game():
 
     meteors = Group()
 
-    # Cria um meteoroários meteoros
+    # Cria um meteoro
     gf.create_fleet(ai_settings, screen, ship, meteors)
 
     # Inicializa o laço principal do jogo
     while True:
         gf.check_events(ai_settings, screen, ship, bullets)
         ship.update()
-        gf.update_bullets(bullets)
+        gf.update_bullets(meteors, bullets)
         # print(len(bullets))
         gf.update_meteors(ai_settings, meteors)
         gf.update_screen(ai_settings, screen, ship, meteors, bullets)
