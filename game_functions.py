@@ -49,7 +49,7 @@ def check_keyup_events(event, ship):
         ship.moving_down = False
 
 
-def check_events(ai_settings, screen, stats, play_button,ship, bullets):
+def check_events(ai_settings, screen, stats, play_button, ship, meteors, bullets):
     """
     Responde a eventos do teclado e do mouse
     """
@@ -60,7 +60,7 @@ def check_events(ai_settings, screen, stats, play_button,ship, bullets):
         # Responde aos movimentos
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            check_play_button(stats, play_button, mouse_x, mouse_y)
+            check_play_button(ai_settings, screen, stats, play_button, ship, meteors, bullets, mouse_x, mouse_y)
 
         elif event.type == pygame.KEYDOWN:
             check_keydown_events(event, ai_settings, screen, ship, bullets)
@@ -69,10 +69,21 @@ def check_events(ai_settings, screen, stats, play_button,ship, bullets):
             check_keyup_events(event, ship)
 
 
-def check_play_button(stats, play_button, mouse_x, mouse_y):
+def check_play_button(ai_settings, screen, stats, play_button, ship, meteors, bullets, mouse_x, mouse_y):
     """Inicia um novo jogo quando clicar em play"""
     if play_button.rect.collidepoint(mouse_x, mouse_y):
+
+        # Reinicia os dados
+        stats.reset_stats()
         stats.game_active = True
+
+        # Esvazia a lista de meteors e projéteis
+        meteors.empty()
+        bullets.empty()
+
+        # Cria uma nova frota e centraiza a espaçonave
+        create_fleet(ai_settings, screen, ship, meteors)
+        ship.center_ship()
 
 
 def update_screen(ai_settings, screen, stats, ship, meteors, bullets, play_button):
