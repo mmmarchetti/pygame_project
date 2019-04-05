@@ -155,18 +155,21 @@ def ship_hit(ai_settings, stats, screen, ship, meteors, bullets):
     """Responde ao fato de a espaçonave ter sido atingida por meteor"""
 
     # decrementa ships_left
-    stats.ships_left -= 1
+    if stats.ships_left > 0:
+        stats.ships_left -= 1
 
-    # esvazia a lista de meteors e projéteis
-    meteors.empty()
-    bullets.empty()
+        # esvazia a lista de meteors e projéteis
+        meteors.empty()
+        bullets.empty()
 
-    # Cria uma nova frota e centraliza a nave
-    create_fleet(ai_settings, screen, ship, meteors)
-    ship.center_ship()
+        # Cria uma nova frota e centraliza a nave
+        create_fleet(ai_settings, screen, ship, meteors)
+        ship.center_ship()
 
-    # Faz uma pausa
-    sleep(0.5)
+        # Faz uma pausa
+        sleep(0.5)
+    else:
+        stats.game_active = False
 
 
 def update_meteors(ai_settings, stats, screen, ship, meteors, bullets):

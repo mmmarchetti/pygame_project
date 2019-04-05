@@ -6,6 +6,9 @@ class GameStats():
         self.ai_settings = ai_settings
         self.reset_stats()
 
+        # inicia em um estado ativo
+        self.game_active = True
+
     def reset_stats(self):
         """Inicliaza dados que podem mudar durante o jogo"""
         self.ships_left = self.ai_settings.ship_limit

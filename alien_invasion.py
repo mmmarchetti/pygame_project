@@ -32,11 +32,13 @@ def run_game():
     # Inicializa o laço principal do jogo
     while True:
         gf.check_events(ai_settings, screen, ship, bullets)
-        ship.update()
-        gf.update_bullets(ai_settings, screen, ship, meteors, bullets)
-        # print(len(bullets))
-        gf.update_meteors(ai_settings, stats, screen, ship, meteors, bullets)
-        gf.update_screen(ai_settings, screen, ship, meteors, bullets)
+
+        if stats.game_active:
+
+            ship.update()
+            gf.update_bullets(ai_settings, screen, ship, meteors, bullets)
+            gf.update_meteors(ai_settings, stats, screen, ship, meteors, bullets)
+            gf.update_screen(ai_settings, screen, ship, meteors, bullets)
 
 
 run_game()
