@@ -65,7 +65,7 @@ def check_events(ai_settings, screen, ship, bullets):
             check_keyup_events(event, ship)
 
 
-def update_screen(ai_settings, screen, ship, meteors, bullets):
+def update_screen(ai_settings, screen, stats, ship, meteors, bullets, play_button):
     """
     Atualiza a imagem da tela
     """
@@ -79,6 +79,10 @@ def update_screen(ai_settings, screen, ship, meteors, bullets):
 
     ship.blitme()
     meteors.draw(screen)
+
+    # Desenha o Botão Jogar se o jogo estiver parado
+    if not stats.game_active:
+        play_button.draw_button()
 
     # Deixa apenas a tela mais recente visível
     pygame.display.flip()
@@ -210,4 +214,3 @@ def change_fleet_direction(ai_settings, meteors):
     for meteor in meteors.sprites():
         meteor.rect.y += ai_settings.fleet_drop_speed
     ai_settings.fleet_direction *= -1
-
