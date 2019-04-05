@@ -179,6 +179,20 @@ def update_meteors(ai_settings, stats, screen, ship, meteors, bullets):
         print('Nave atingida')
         ship_hit(ai_settings, stats, screen, ship, meteors, bullets)
 
+    # Verifica se há meteor que atingiu a parte inferior da tela
+    check_meteors_bottom(ai_settings, stats, screen, ship, meteors, bullets)
+
+
+def check_meteors_bottom(ai_settings, stats, screen, ship, meteors, bullets):
+    """Verifica se o meteor atingiu a base da tela"""
+    screen_rect = screen.get_rect()
+    for meteor in meteors.sprites():
+        if meteor.rect.bottom >= screen_rect.bottom:
+
+            # Trata esse caso do mesmo modo quando a nave é atingida
+            ship_hit(ai_settings, stats, screen, ship, meteors, bullets)
+            break
+
 
 def check_fleet_edges(ai_settings, meteors):
     """responde quando atinge a borda"""
