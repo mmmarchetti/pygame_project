@@ -219,7 +219,6 @@ def update_meteors(ai_settings, stats, screen, ship, meteors, bullets):
 
     # Verifica se houve colisão entre meteor e ship
     if pygame.sprite.spritecollideany(ship, meteors):
-        print('Nave atingida')
         ship_hit(ai_settings, stats, screen, ship, meteors, bullets)
 
     # Verifica se há meteor que atingiu a parte inferior da tela
