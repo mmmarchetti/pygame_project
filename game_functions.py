@@ -88,6 +88,7 @@ def check_play_button(ai_settings, screen, stats, sb, play_button, ship, meteors
         sb.prep_score()
         sb.prep_high_score()
         sb.prep_level
+        sb.prep_ships()
 
         # Esvazia a lista de meteors e projéteis
         meteors.empty()
@@ -199,12 +200,15 @@ def get_number_rows(ai_settings, ship_height, meteor_height):
     return number_rows
 
 
-def ship_hit(ai_settings, stats, screen, ship, meteors, bullets):
+def ship_hit(ai_settings, stats, screen, sb, ship, meteors, bullets):
     """Responde ao fato de a espaçonave ter sido atingida por meteor"""
 
     # decrementa ships_left
     if stats.ships_left > 0:
         stats.ships_left -= 1
+
+        # Atualiza o painel de pontuações
+        sb.prep_ships()
 
         # esvazia a lista de meteors e projéteis
         meteors.empty()
@@ -222,27 +226,27 @@ def ship_hit(ai_settings, stats, screen, ship, meteors, bullets):
         pygame.mouse.set_visible(True)
 
 
-def update_meteors(ai_settings, stats, screen, ship, meteors, bullets):
+def update_meteors(ai_settings, stats, screen, sb, ship, meteors, bullets):
     """Atualiza a posição dos meteors"""
     check_fleet_edges(ai_settings, meteors)
     meteors.update()
 
     # Verifica se houve colisão entre meteor e ship
     if pygame.sprite.spritecollideany(ship, meteors):
-        ship_hit(ai_settings, stats, screen, ship, meteors, bullets)
+        ship_hit(ai_settings, stats, screen, sb, ship, meteors, bullets)
 
     # Verifica se há meteor que atingiu a parte inferior da tela
-    check_meteors_bottom(ai_settings, stats, screen, ship, meteors, bullets)
+    check_meteors_bottom(ai_settings, stats, screen, sb, ship, meteors, bullets)
 
 
-def check_meteors_bottom(ai_settings, stats, screen, ship, meteors, bullets):
+def check_meteors_bottom(ai_settings, stats, screen, sb, ship, meteors, bullets):
     """Verifica se o meteor atingiu a base da tela"""
     screen_rect = screen.get_rect()
     for meteor in meteors.sprites():
         if meteor.rect.bottom >= screen_rect.bottom:
 
             # Trata esse caso do mesmo modo quando a nave é atingida
-            ship_hit(ai_settings, stats, screen, ship, meteors, bullets)
+            ship_hit(ai_settings, stats, screen, sb, ship, meteors, bullets)
             break
 
 
