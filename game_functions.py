@@ -138,6 +138,7 @@ def check_bullet_meteor_collision(ai_settings, screen, stats, sb, ship, meteors,
         for meteors in collisions.values():
             stats.score += ai_settings.meteor_points * len(meteors)
             sb.prep_score()
+            check_high_score(stats, sb)
 
     if len(meteors) == 0:
 
@@ -249,3 +250,10 @@ def change_fleet_direction(ai_settings, meteors):
     for meteor in meteors.sprites():
         meteor.rect.y += ai_settings.fleet_drop_speed
     ai_settings.fleet_direction *= -1
+
+
+def check_high_score(stats, sb):
+    """Verifica se há nova pontuação máxima"""
+    if stats.score > stats.high_score:
+        stats.high_score = stats.score
+        sb.prep_high_score()

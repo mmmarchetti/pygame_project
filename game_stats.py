@@ -9,6 +9,9 @@ class GameStats():
         # inicia em um estado inativo
         self.game_active = False
 
+        # A pontuação máxima não reinicializada
+        self.high_score = 0
+
     def reset_stats(self):
         """Inicliaza dados que podem mudar durante o jogo"""
         self.ships_left = self.ai_settings.ship_limit
