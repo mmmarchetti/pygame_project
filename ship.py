@@ -15,7 +15,7 @@ class Ship(Sprite):
         self.ai_settings = ai_settings
 
         # Carrega a imagem da espaçonave
-        self.image = pygame.image.load('images/rocket_phf23.bmp')
+        self.image = pygame.image.load('images/rocketb.png')
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
 
