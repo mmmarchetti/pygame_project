@@ -87,7 +87,7 @@ def check_play_button(ai_settings, screen, stats, sb, play_button, ship, meteors
         # Reinicia as imagens do painel de pontuação
         sb.prep_score()
         sb.prep_high_score()
-        sb.prep_level
+        sb.prep_level()
         sb.prep_ships()
 
         # Esvazia a lista de meteors e projéteis
