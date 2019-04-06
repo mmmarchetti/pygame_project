@@ -49,7 +49,7 @@ def check_keyup_events(event, ship):
         ship.moving_down = False
 
 
-def check_events(ai_settings, screen, stats, play_button, ship, meteors, bullets):
+def check_events(ai_settings, screen, stats, sb, play_button, ship, meteors, bullets):
     """
     Responde a eventos do teclado e do mouse
     """
@@ -60,7 +60,7 @@ def check_events(ai_settings, screen, stats, play_button, ship, meteors, bullets
         # Responde aos movimentos
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
-            check_play_button(ai_settings, screen, stats, play_button, ship, meteors, bullets, mouse_x, mouse_y)
+            check_play_button(ai_settings, screen, stats, sb, play_button, ship, meteors, bullets, mouse_x, mouse_y)
 
         elif event.type == pygame.KEYDOWN:
             check_keydown_events(event, ai_settings, screen, ship, bullets)
@@ -69,11 +69,13 @@ def check_events(ai_settings, screen, stats, play_button, ship, meteors, bullets
             check_keyup_events(event, ship)
 
 
-def check_play_button(ai_settings, screen, stats, play_button, ship, meteors, bullets, mouse_x, mouse_y):
+def check_play_button(ai_settings, screen, stats, sb, play_button, ship, meteors, bullets, mouse_x, mouse_y):
     """Inicia um novo jogo quando clicar em play"""
     button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
 
     if button_clicked and not stats.game_active:
+        # Reinicia as configuraçoes do jogo
+        ai_settings.initialize_dynamic_settings()
 
         # Oculta o mouse
         pygame.mouse.set_visible(False)
@@ -81,6 +83,11 @@ def check_play_button(ai_settings, screen, stats, play_button, ship, meteors, bu
         # Reinicia os dados
         stats.reset_stats()
         stats.game_active = True
+
+        # Reinicia as imagens do painel de pontuação
+        sb.prep_score()
+        sb.prep_high_score()
+        sb.prep_level
 
         # Esvazia a lista de meteors e projéteis
         meteors.empty()
@@ -141,10 +148,12 @@ def check_bullet_meteor_collision(ai_settings, screen, stats, sb, ship, meteors,
             check_high_score(stats, sb)
 
     if len(meteors) == 0:
-
+        # Se a frota for destruída desenha novo nível
         # Destrói os projéteis e cria nova frota
         bullets.empty()
         ai_settings.increase_speed()
+        stats.level += 1
+        sb.prep_level()
         create_fleet(ai_settings, screen, ship, meteors)
 
 
@@ -209,6 +218,7 @@ def ship_hit(ai_settings, stats, screen, ship, meteors, bullets):
         sleep(0.5)
     else:
         stats.game_active = False
+
         pygame.mouse.set_visible(True)
 
 
