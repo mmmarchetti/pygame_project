@@ -10,8 +10,8 @@ class Settings():
         Inicializa as configurações do jogo
         """
         # Configurações da tela
-        self.screen_width = 800
-        self.screen_height = 600
+        self.screen_width = 1280
+        self.screen_height = 720
         self.bg_color = (255, 255, 255)
 
         # Configuração da espaçonave

@@ -16,7 +16,7 @@ class Meteor(Sprite):
         self.ai_settings = ai_settings
 
         # Carrega a imagem do meteoro
-        self.image = pygame.image.load('images/meteor.bmp')
+        self.image = pygame.image.load('images/2B.png')
         self.rect = self.image.get_rect()
 
         # Inicia cada novo meteoro próximo à parte superior esquerda
