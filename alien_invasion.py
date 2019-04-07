@@ -9,7 +9,7 @@ import game_functions as gf
 
 
 def run_game():
-    """Inicialzaa o jogo"""
+    """Inicializa o jogo"""
 
     pygame.init()
     ai_settings = Settings()
