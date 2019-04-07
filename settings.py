@@ -30,15 +30,16 @@ class Settings():
 
         # Taxa que a velocidade do jogo aumenta
         self.speedup_scale = 1.1
+
         # Taxa com que pontos aumentam
         self.score_scale = 1.5
         self.initialize_dynamic_settings()
 
     def initialize_dynamic_settings(self):
         """Iniciliza as configurações que mudam no decorrer do jogo"""
-        self.ship_speed_factor = 1.5
+        self.ship_speed_factor = 0.5
         self.bullet_speed_factor = 3
-        self.meteor_speed_factor = 1
+        self.meteor_speed_factor = 0.5
         self.fleet_direction = 1
 
         # Pontuação

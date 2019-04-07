@@ -8,6 +8,6 @@ class Background(pygame.sprite.Sprite):
         """Inicializa a imagem de fundo"""
 
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load('images/nebula_red.jpg')
+        self.image = pygame.image.load('images/nebula_red.png')
         self.rect = self.image.get_rect()
         self.rect.left, self.rect.top = location

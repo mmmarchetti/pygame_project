@@ -3,7 +3,6 @@ import sys
 from time import sleep
 from bullet import Bullet
 from meteor import Meteor
-from background import Background
 
 
 def check_keydown_events(event, ai_settings, screen, ship, bullets):
@@ -106,9 +105,7 @@ def update_screen(ai_settings, screen, stats, sb, ship, meteors, bullets, play_b
     """
 
     # Redesenha a tela a cada passagem de laço
-    background = Background([0, 0])
     screen.fill(ai_settings.bg_color)
-    screen.blit(background.image, background.rect)
 
     # Redesenha todos os projéteis da espaçonave
     for bullet in bullets.sprites():
