@@ -106,7 +106,7 @@ def update_screen(ai_settings, screen, stats, sb, ship, meteors, bullets, play_b
     """
 
     # Redesenha a tela a cada passagem de laço
-    background = Background('images/nebula_red.png', [0, 0])
+    background = Background([0, 0])
     screen.fill(ai_settings.bg_color)
     screen.blit(background.image, background.rect)
 
