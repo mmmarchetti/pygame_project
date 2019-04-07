@@ -25,7 +25,8 @@ class Settings():
         self.bullets_allowed = 5
 
         # Configuração de meteors
-        self.fleet_drop_speed = 100
+        self.fleet_drop_speed = 10
+
         # fleet igual a 1 represneta direita. -1 esquerda
 
         # Taxa que a velocidade do jogo aumenta
