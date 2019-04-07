@@ -16,7 +16,7 @@ def run_game():
 
     screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
 
-    pygame.display.set_caption("Destrua os Meteoros!")
+    pygame.display.set_caption("Destrua os Inimigos!")
 
     # Cria o botão Jogar
     play_button = Button(ai_settings, screen, "Jogar")
